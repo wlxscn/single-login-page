@@ -491,7 +491,7 @@ window.page = widget({
     showActionButtons: function () {
 
       var self = this;
-
+      self.data.detail.main.preInvoicesCount= self.data.detail.preInvoicesCount;
       var tpl = template('tpl-right-operate', self.data.detail.main);
 
       $('#maininfo').append(tpl);

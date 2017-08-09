@@ -128,7 +128,7 @@
 <script type="text/html" id="tpl-right-operate">
   <div class="operate-panel">
     <div class="line first">
-      <label>待开发票数量：{{canMakeInvoiceNums}}(蓝{{canMakeBlueInvoiceNums}}/红{{canMakeRedInvoiceNums}})</label>
+      <label>待开发票数量：{{preInvoicesCount}}(蓝{{canMakeBlueInvoiceNums}}/红{{canMakeRedInvoiceNums}})</label>
       <label>待开总金额：{{canMakeAmountWithTax|moneyFormat}}</label>
     </div>
 
@@ -156,6 +156,9 @@
     </div>
     <div class="invoice">
       <img class="imgbg" src="assets/images/full_invoice_type_{{item.main.invoiceType}}.png">
+      {{if tab=="hasprint" && item.main.status=='0'}}
+         <img class="statusImg" src="assets/images/abandonPic.png"/>
+      {{/if}}
       <div class="iinfo invoiceCode">{{item.main.invoiceCode}}</div>
       <div class="iinfo invoiceNo">{{item.main.invoiceNo}}</div>
       <div class="iinfo paperDrewDate">{{item.main.paperDrewDate}}</div>
@@ -164,7 +167,7 @@
       <div class="iinfo buyerTaxNo">{{item.main.purchaserTaxNo}}</div>
       <div class="iinfo buyerAddrTel">{{item.main.purchaserAddrTel}}</div>
       <div class="iinfo buyerBankAccount">工商银行济南市支行 工商银行济南市支行工商银行济南市支行 05561900040001125</div>
-      <div class="iinfo password"></div>
+      <div class="iinfo password">{{item.main.cipherText}}</div>
       <ul class="iinfo details">
         {{each item.details goods}}
         <li>

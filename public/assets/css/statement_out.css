@@ -500,6 +500,11 @@ ul,li{
     float: left;
     /*background-image: url('../images/outinvoice_full_invoice_origen_c.png');*/
 }
+.invoice .statusImg {
+    position: absolute;
+    left: -25px;
+    top: -15px;
+}
 .invoice .imgbg{
     width:100%;
     height: auto;
@@ -553,7 +558,7 @@ ul,li{
     left: 60%;
     width: 33.2%;
     height: 21%;
-    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .invoice .details{
