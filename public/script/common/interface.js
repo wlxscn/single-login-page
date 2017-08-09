@@ -1,0 +1,30 @@
+window.Interface = {
+	'/api-v1/security/login':{
+		'alias':'登录',
+		'operation':[]
+	},
+	'/api-v1/dashboard/charts/amount-tobe-invoiced':{
+		'alias':'测试接口一',
+		'operation':['x0101000']
+	},
+	'/api-v1/settlement/summary':{
+		'alias':'获取销项结算单tab信息',
+		'operation':['x0101000']
+	},
+	'/api-v1/settlement/list':{
+		'alias':'获取销项结算单列表',
+		'operation':['x0101000']
+	},
+	'/api-v1/invoice/seller/summary':{
+		'alias':'获取销项发票tab信息',
+		'operation':['x0201000']
+	},
+	'/api-v1/invoice/seller/list':{
+		'alias':'获取销项发票列表',
+		'operation':['x0201000']
+	},
+	'/api-v1/company/item/search':{
+		'alias':'获取公司信息',
+		'operation':['x0201000']
+	}
+}

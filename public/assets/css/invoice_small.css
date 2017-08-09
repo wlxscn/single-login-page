@@ -1,0 +1,234 @@
+.invoice-pic{
+    width: 100%;
+    border: 1px solid red;
+    background-image: url(../images/details/simple_invoice.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    float: left;
+}
+
+.invoice-pic>img{
+    width: 100%;
+}
+
+.invoive-nos{
+    font-size: 12px;
+    color: rgb(191, 191, 191);
+    margin-top: 5.7%;
+    margin-left: 15%;
+    float: left;
+}
+
+.invoive-codes{
+    font-size: 12px;
+    color: rgb(191, 191, 191);
+    float: right;
+    margin-top: 5.7%;
+    margin-right: 13%;
+}
+
+.invoice-pic>div{
+    display: inline-block;
+    /*height: 50px;*/
+}
+
+.invoive-buyer{
+    float: left;
+    margin-top: 12%;
+    font-size: 14px;
+    color: #5a5b5d;
+    font-weight: bold;
+}
+
+.invoive-seller{
+    float: right;
+    margin-top: 12%;
+    font-size: 14px;
+    color: #5a5b5d;
+    font-weight: bold;
+}
+
+.invoice-picss>div>div{
+    color: #dda469;
+    font-size: 12px;
+}
+
+.invoice-picss>div>div>span{
+    font-size: 12px;
+    color: #4a4a4a;
+}
+
+.invoice-date{
+    float: left;
+    margin-top: 16%;
+    margin-left: -11%;
+}
+
+.invoice-withouttax{
+    float: right;
+    margin-top: 16%;
+    margin-right: -7%;
+}
+
+.invoice-rate{
+    float: left;
+    margin-top: 20%;
+    margin-left: -11%;
+}
+
+.invoice-tax{
+    float: right;
+    margin-top: 20%;
+    margin-right: -7%;
+}
+
+.invoice-details{
+    float: left;
+    margin-top: 24%;
+    margin-left: -11%;
+}
+
+.total-amount{
+    float: right;
+    margin-top: 24%;
+    margin-right: -7%;
+}
+
+.invoice-type>img{
+    display: block;
+}
+
+.invoice-type{
+    /*border: 1px solid red;*/
+    margin-top: 17%;
+    float: left;
+    margin-left: 20%;
+}
+
+
+
+.mar-letss{
+    color: #c7c7c7;
+}
+
+
+.invoice-pics{
+    width: 100%;
+    position: relative;
+}
+
+.invoice-pics>img{
+    width: 100%;
+}
+
+.invoive-buyerss{
+    position: absolute;
+    top: 31%;
+    left: 14%;
+    font-size: 14px;
+    color: #5a5b5d;
+    font-weight: bold;
+}
+
+.invoive-sellerss{
+    position: absolute;
+    top: 31%;
+    right:14%;
+    font-size: 14px;
+    color: #5a5b5d;
+    font-weight: bold;
+}
+
+.invoice-datess{
+    position: absolute;
+    top: 43%;
+    left: 14%;
+}
+
+.invoice-withouttaxss{
+    position: absolute;
+    top: 43%;
+    left: 65%;
+}
+
+.invoice-ratess{
+    position: absolute;
+    top: 55%;
+    left: 14%;
+}
+
+.invoice-taxss{
+    position: absolute;
+    top: 55%;
+    left: 65%;
+}
+
+.invoice-detailsss{
+    position: absolute;
+    top: 67%;
+    left: 14%;
+}
+
+.total-amountss{
+    position: absolute;
+    top: 67%;
+    left: 65%;
+    margin-left: -24px;
+}
+
+.invoice-typess{
+    position: absolute;
+    top: 43%;
+    left: 47%;
+    text-align: center;
+}
+
+/*.mar-letss{
+    position: absolute;
+}*/
+
+.invoice-pics>div>div{
+    color: #dda469;
+    font-size: 12px;
+}
+
+.invoice-pics>div>div>span{
+    font-size: 12px;
+    color: #4a4a4a;
+}
+
+.invoive-noss{
+    font-size: 12px;
+    position: absolute;
+    top: 13.5%;
+    left: 15%;
+    color: rgb(191, 191, 191);
+}
+
+.invoive-codess{
+    font-size: 12px;
+    position: absolute;
+    top: 13.5%;
+    left: 82.5%;
+    color: rgb(191, 191, 191);
+}
+
+.invoice-typess>img{
+    display: block;
+    height: 16px;
+    width: auto;
+    margin:0 auto 3px;
+}
+
+.invoice-pics > .redflag{
+    position: absolute;
+    left:50%;
+    top:12%;
+    width:72px;
+    height: 72px;
+    margin-left: -36px;
+}
+
+.invoice-pics > .redflag > img{
+    width: 100%;
+}

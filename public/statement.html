@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>票易通-销项结算单</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="x-dns-prefetch-control" content="off">
+  <meta name="application-name" content="票易通-销项结算单">
+  <meta name="robots" content="noodp,nooydir" id="robots">
+  <meta name="description" content="票易通-销项结算单" id="description">
+  <meta name="keywords" content="票易通-销项结算单" id="keywords">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <link href="assets/images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" media="screen" href="static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" media="screen" href="static/bootstrap/css/bootstrap-responsive.min.css">
+
+  <link rel="stylesheet" media="screen" href="assets/css/widget.css">
+
+  <link rel="stylesheet" media="screen" href="assets/css/common.css">
+
+  <link rel="stylesheet" media="screen" href="assets/css/statement_out.css">
+  <link rel="stylesheet" media="screen" href="assets/css/log.css">
+  <link rel="stylesheet" media="screen" href="assets/css/sdetail.css">
+  <link rel="stylesheet" media="screen" href="assets/css/invoice_small.css">
+  <link rel="stylesheet" media="screen" href="assets/css/dialog_change.css">
+
+  <script type="text/javascript" src="static/js/jquery-1.9.min.js"></script>
+  <script type="text/javascript" src="script/common/json2.js"></script>
+  <script type="text/javascript" src="script/common/base.js"></script>
+
+  <script type="text/javascript" src="script/lib/es5-shim.min.js"></script>
+  <script type="text/javascript" src="script/lib/es5-sham.min.js"></script>
+  <script type="text/javascript" src="script/lib/template-web.js"></script>
+  <script type="text/javascript" src="script/lib/jquery.widget.js"></script>
+  <script type="text/javascript" src="script/lib/jquery.iframe.js"></script>
+  <script type="text/javascript" src="script/lib/jquery.fileupload.js"></script>
+  <script type="text/javascript" src="script/lib/jquery.ajaxSubmit.js"></script>
+  <script type="text/javascript" src="script/common/art-format.js"></script>
+
+
+  <script type="text/javascript" src="script/lib/jquery.scroll-loading.js"></script>
+  <script type="text/javascript" src="script/lib/jquery-scrolltofixed-min.js"></script>
+  <script type="text/javascript" src="script/lib/jquery.rotate.js"></script>
+  <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="static/DCalendar/dcalendar.picker.js"></script>
+
+  <script type="text/javascript" src="script/common/interface.js"></script>
+  <script type="text/javascript" src="script/common/ajax.js"></script>
+
+  <script type="text/javascript" src="script/page/statement_out.js"></script>
+</head>
+
+<body>
+<div class="main-panel" v-templete="tpl-statement_out">
+  <div class="scroll-panel">
+    <div class="content">
+      <div class="cbody">
+        <div class="right-panel">
+          <div class="right-box">
+            <ul id="detail-tabs" class="nav nav-tabs">
+              <li tabname="unprint" class="active"><a id="wkfp">未开发票</a></li>
+              <li tabname="hasprint"><a id="ykfp">已开发票</a></li>
+              <li tabname="detail"><a>结算单详情</a></li>
+              <li tabname="record"><a>操作记录</a></li>
+            </ul>
+            <div class="info" id="rt-scroll">
+              <div id="maininfo"></div>
+              <div style="width:100%;height: 72px;"></div>
+            </div>
+            <div class="loading" id="detail_loading">
+              <div class="img">
+                <img src="assets/images/loading.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+
+<script type="text/html" id="tpl-right-baseinfo">
+  <div class="statement_item detail">
+    <div id="detail-baseinfo" class="card">
+      <div class="col col-1">
+        <img src="{{purchaserLogoIcon}}">
+      </div>
+      <ul class="col col-2">
+        <li class="tit">{{purchaserName}}</li>
+        <li class="des">结算单号：{{settlementNo||''}}</li>
+        <li class="des">上传时间：{{createTime|dateFormat}}</li>
+        <li class="des">税率：{{taxRateArray|taxRateFormat}}</li>
+        <li class="des">期望开票日期：{{predictInvoiceDate|dateFormat}}</li>
+        <li class="des">开票结算期间：{{settlementPeriod|dateFormat}}</li>
+        <li class="des">协同类型：{{cooperateFlag==0?'未协同':'协同'}}</li>
+        <li class="des">订单号(企业)：{{orderNo}}</li>
+
+      </ul>
+      <div class="col col-3">
+        <div class="{{invoiceTypeCss}}"></div>
+        <div class="allow-left">
+          <img src="assets/images/arrow-left.png">
+        </div>
+        <div class="des">{{invoiceType=='ce'?'电':'纸'}}</div>
+      </div>
+      <ul class="col col-2 t-right">
+        <li class="tit">{{sellerName}}</li>
+        <li class="des">不含税：{{amountWithoutTax|moneyFormat}}</li>
+        <li class="des">税额：{{taxAmount|moneyFormat}}</li>
+        <li class="des">总额：{{amountWithTax|moneyFormat}}</li>
+        <li class="des">不含税折扣金额：{{discountWithoutTax|moneyFormat}}</li>
+        <li class="des">折扣税额：{{discountTax|moneyFormat}}</li>
+        <li class="des">含税折扣金额：{{discountWithTax|moneyFormat}}</li>
+        <li class="des">合同号(企业)：{{contractNo}}</li>
+      </ul>
+      <div class="col col-1">
+        <img src="{{sellerLogoIcon}}">
+      </div>
+    </div>
+    <div id="more-baseinfo" class="more">展开更多基本信息</div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-right-operate">
+  <div class="operate-panel">
+    <div class="line first">
+      <label>待开发票数量：{{canMakeInvoiceNums}}(蓝{{canMakeBlueInvoiceNums}}/红{{canMakeRedInvoiceNums}})</label>
+      <label>待开总金额：{{canMakeAmountWithTax|moneyFormat}}</label>
+    </div>
+
+    <div class="line second">
+      {{if canMakeInvoiceNums>0}}
+      <label class="checkbox" catalog="4" tabs="unprint" auth="x0101470">
+        <input type="checkbox" id="selectall_invoice"> 全选
+      </label>
+      {{/if}}
+      <a class="btn btn-normal" catalog="4" tabs="unprint" auth="x0101470"
+         onclick="page.action_issue_invoice_multiple()">开具</a>
+      {{if invoiceType!='ce'}}
+      <a class="btn btn-normal" catalog="4" tabs="unprint" auth="x0101471"
+         onclick="page.action_issue_invoice_multiple('print')">开具并打印</a>
+      {{/if}}
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-invoice">
+  {{each list item i}}
+  <div class="invoice-big-box">
+    <div class="selectbox">
+      <input type="checkbox" name="biginvoice" inv_id="{{item.main.preInvoiceId}}">
+    </div>
+    <div class="invoice">
+      <img class="imgbg" src="assets/images/full_invoice_type_{{item.main.invoiceType}}.png">
+      <div class="iinfo invoiceCode">{{item.main.invoiceCode}}</div>
+      <div class="iinfo invoiceNo">{{item.main.invoiceNo}}</div>
+      <div class="iinfo paperDrewDate">{{item.main.paperDrewDate}}</div>
+
+      <div class="iinfo buyerName">{{item.main.purchaserName}}</div>
+      <div class="iinfo buyerTaxNo">{{item.main.purchaserTaxNo}}</div>
+      <div class="iinfo buyerAddrTel">{{item.main.purchaserAddrTel}}</div>
+      <div class="iinfo buyerBankAccount">工商银行济南市支行 工商银行济南市支行工商银行济南市支行 05561900040001125</div>
+      <div class="iinfo password"></div>
+      <ul class="iinfo details">
+        {{each item.details goods}}
+        <li>
+          <span class="s1">{{goods.cargoName}}</span>
+          <span class="s2">{{goods.itemSpec}}</span>
+          <span class="s3">{{goods.quantityUnit}}</span>
+          <span class="s4">{{goods.quantity|intFormat}}</span>
+          <span class="s5">{{goods.unitPrice|moneyFormat}}</span>
+          <span class="s6">{{goods.amountWithoutTax|moneyFormat}}</span>
+          <span class="s7">{{goods.taxRate|intFormat}}%</span>
+          <span class="s8">{{goods.taxAmount|moneyFormat}}</span>
+        </li>
+        {{/each}}
+      </ul>
+      <div class="iinfo amountMoney">{{item.main.amountWithoutTax|moneyFormat}}</div>
+      <div class="iinfo amountTaxes">{{item.main.taxAmount|moneyFormat}}</div>
+
+      <div class="iinfo amountWithTaxCapital">{{item.main.amountWithTaxCapital}}</div>
+      <div class="iinfo lowerCase">{{item.main.amountWithTax|moneyFormat}}</div>
+
+      <div class="iinfo sellerName">{{item.main.sellerName}}</div>
+      <div class="iinfo sellerTaxNo">{{item.main.sellerTaxNo}}</div>
+      <div class="iinfo sellerAddrTel">{{item.main.sellerAddrTel}}</div>
+      <div class="iinfo sellerBankAccount">{{item.main.sellerBankAccount}}</div>
+
+      <div class="iinfo sellerRemark">{{item.main.remark}}</div>
+
+      <div class="iinfo seller-p-name"></div>
+      <div class="iinfo seller-p-repeater"></div>
+      <div class="iinfo seller-p-printer"></div>
+
+      <div class="iinfo idx">({{originLen+i+1}}/{{invoiceNums}})</div>
+    </div>
+
+    <div class="btn-group">
+      {{if tab == 'unprint' && !item.disable}}
+        <div class="btn btn-blue settlementBtn"  auth="x0101472" onclick="page.action_issue_invoice_single('{{item.main.preInvoiceId}}')">开具</div>
+        {{if item.main.invoiceType!='ce'}}
+        <br><br>
+        <div class="btn btn-blue settlementBtn"  auth="x0101473" onclick="page.action_issue_invoice_single('{{item.main.preInvoiceId}}','print')">开具并打印
+        </div>
+        {{/if}}
+      {{else if item.main.invoiceOrig == 5 && tab== "hasprint"
+          && (item.main.invoiceType == 'c' || item.main.invoiceType == 's')
+      }}
+
+        {{if item.main.status == 1 && (item.main.redFlag != '1' || item.main.redFlag != '2' || item.main.redFlag != '3' || item.main.redFlag != '4')}}
+          <div class="btn btn-blue invoiceBtn"  auth="x0201140" onclick="page.action_invalid_invoice('{{item.main.invoiceId}}')">作废</div>
+        {{/if}}
+
+        {{if item.main.status == 1 || item.main.status == 2}}
+          <br><br>
+          <div class="btn btn-blue invoiceBtn" auth="x0201090" onclick="page.action_print_invoice('{{item.main.invoiceId}}')">打印发票</div>
+          {{if item.main.hasSaleList}}
+          <br><br>
+          <div class="btn btn-blue invoiceBtn" auth="x0201091,x0201092" onclick="page.action_printList('{{i}}')">打印销货清单</div>
+          {{/if}}
+        {{/if}} 
+
+      {{/if}}
+
+    </div>
+  </div>
+  {{/each}}
+</script>
+
+<script type="text/html" id="tpl-invoice-small">
+  {{each list item i}}
+  <div class="invoice-small-box">
+    <div class="selectbox">
+      <input type="checkbox" name="smallinvoice">
+    </div>
+    <div class="invoice-pics">
+      <img src="/assets/images/details/simple_invoice.png"/>
+      <div class="redflag">
+        {{if item.main.redFlag==1}}
+        <img src="/assets/images/invoice/red_state_1.png"/>
+        {{else if item.main.redFlag==2}}
+        <img src="/assets/images/invoice/red_state_2.png"/>
+        {{else if item.main.redFlag==3}}
+        <img src="/assets/images/invoice/red_state_3.png"/>
+        {{else if item.main.redFlag==4}}
+        <img src="/assets/images/invoice/red_state_4.png"/>
+        {{/if}}
+      </div>
+      <div class="invoive-noss">{{item.main.invoiceNo}}</div>
+      <div class="invoive-codess">{{item.main.invoiceCode}}</div>
+      <div class="invoive-buyerss">
+        {{item.main.purchaserName}}
+      </div>
+      <div class="invoive-sellerss">
+        {{item.main.sellerName}}
+      </div>
+      <div class="invoice-datess">
+        <div>开票日期： <span>{{item.main.paperDrewDate|dateFormat}}</span></div>
+      </div>
+      <div class="invoice-withouttaxss">
+        <div>金额： <span>{{item.main.amountWithoutTax|moneyFormat}}</span></div>
+      </div>
+      <div class="invoice-ratess">
+        <div>税率： <span>{{item.main.taxRate|intFormat}}%</span></div>
+      </div>
+      <div class="invoice-taxss">
+        <div>税额： <span>{{item.main.taxAmount|moneyFormat}}</span></div>
+      </div>
+      <div class="invoice-detailsss">
+        <div>明细： <span>取得的住宅1</span></div>
+      </div>
+      <div class="total-amountss">
+        <div>含税合计： <span>{{item.main.amountWithTax|moneyFormat}}</span></div>
+      </div>
+      <div class="invoice-typess">
+        {{if item.main.amountWithoutTax<0&&item.main.invoiceType=='s'}}
+        <img src="/assets/images/specialRedInvNote.png" class="mar-letss"/>
+        {{else if item.main.amountWithoutTax<0&&item.main.invoiceType!='s'}}
+        <img src="/assets/images/normalRedInvNote.png" class="mar-letss"/>
+        {{else if item.main.amountWithoutTax>0&&item.main.invoiceType=='s'}}
+        <img src="/assets/images/specialInvNote.png" class="mar-letss"/>
+        {{else if item.main.amountWithoutTax>0&&item.main.invoiceType!='s'}}
+        <img src="/assets/images/normalInvNote.png" class="mar-letss"/>
+        {{/if}}
+        <img src="/assets/images/arrow-left.png"/>
+        <span class="mar-letss">({{item.main.invoiceType=='ce'?'电':'纸'}})</span>
+      </div>
+    </div>
+    <div class="btn-group">
+      <div class="btn btn-blue">详情</div>
+
+    </div>
+  </div>
+  {{/each}}
+</script>
+
+<script type="text/html" id="tpl-no-invoice">
+  <div style="text-align: center;">
+    <div class="no-invoice"></div>
+    <div class="btn btn-blue" onclick="page.setDetailTabFocus('hasprint')">请到已开具查看发票</div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-log-box">
+  <div class="log-con">
+    <div class="circle-top" id="logTop">
+                <span>
+                    <img src="static/img/informationNoteCircle.png"/>
+                </span>
+      <span class="top-line"></span>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-log-item">
+  {{each list item i}}
+  <div class="log-item" name="logItem">
+    <div class="log-left">
+      <span class="date">{{item.operateTime|dateFormat}}</span>
+      <span class="time">{{item.operateTime|timeFormat}}</span>
+    </div>
+    <div class="log-center">
+      <div class="circle-small">
+        <img src="static/img/informationNoteCircle.png"/>
+      </div>
+      <div class="middle-line"></div>
+    </div>
+    <div class="log-right">
+      <div class="operater">操作人： <span class="username">{{item.operateUserName}}</span></div>
+      <div class="operater-con">操作内容： <span>{{item.operateContext}}</span></div>
+    </div>
+  </div>
+  {{/each}}
+</script>
+
+<script type="text/html" id="tpl-message">
+  <div class="message" id="{{msgid}}">
+    <div class="state {{type}}">
+      {{if type==''}}
+      成功
+      {{else if type=='warn'}}
+      警告
+      {{else if type=='error'}}
+      失败
+      {{/if}}
+    </div>
+    <div class="text">{{message}}</div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-dialog">
+  <div class="dialog" id="{{dialogid}}">
+    <div class="dialog-bg"></div>
+    <div class="modal fade" style="opacity:1;top:15%;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          {{if showHead}}
+          <div class="modal-header">
+            <button type="button" class="close btn-cancel" data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              {{title}}
+            </h4>
+          </div>
+          {{/if}}
+          <div class="modal-body">
+            {{@content}}
+          </div>
+          {{if showFoot}}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-cancel">
+              {{label_cancel||'取消 '}}
+            </button>
+            <button type="button" class="btn btn-primary btn-ok">
+              {{label_ok||'确定 '}}
+            </button>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl_issue_invoice">
+  <div class="dialog_issue_invoice form-horizontal">
+    <div class="control-group">
+      <label class="control-label" style="padding-top:0;">开具公司：</label>
+      <div class="controls">
+        <span class="help-inline">{{companyName}}</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">开具点：</label>
+      <div class="controls">
+        <select class="span2" id="issue_point">
+          {{each mis item i}}
+          <option value="{{item.invoiceAgentCode}}" style="color:{{item.invoiceAgentStatus==0?'red':'#000'}}">
+            {{item.invoiceAgentAddr}}
+            ({{item.invoiceAgentStatus==0?'离线':'在线'}})
+          </option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-info" style="color:#41b4ec;">可开的数据如下，是否继续？</label>
+    </div>
+    <div class="control-group" style="padding-left:36px;">
+      <label class="control-cell">结算单数量：{{settlementsCount||1}}</label>
+      <label class="control-cell">发票数量：{{invoicesCount}}</label>
+    </div>
+    <div class="control-group" style="padding-left:36px;">
+      <label class="control-cell">含税金额：{{invoicesTotalAmountWithTax|moneyFormat}}</label>
+      <label class="control-cell">不含税金额：{{invoicesTotalAmountWithoutTax|moneyFormat}}</label>
+      <label class="control-cell">税额：{{invoicesTotalTaxAmount|moneyFormat}}</label>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-statement-detail">
+  <div>
+    <div class="detail-infos">
+      <div class="sellterInfos">
+        <div class="info-border">
+          <div class="sellterTitle">
+                            <span>
+                                <img src="assets/images/details/informationNoteCircle.png"/>
+                            </span>
+            <span class="title-font">销方信息</span>
+          </div>
+          <div class="sellterDetails">
+            <table>
+              <tbody>
+              <tr>
+                <td>销方名称：<span>{{main.sellerName}}</span></td>
+                <td>销方地址：<span>{{main.sellerAddress}}</span></td>
+                <td>销方银行名称：<span>{{main.sellerBankName}}</span></td>
+              </tr>
+              <tr>
+                <td>销方税号：<span>{{main.sellerTaxNo}}</span></td>
+                <td>销方电话：<span>{{main.sellerTel}}</span></td>
+                <td>销方银行账号：<span>{{main.sellerBankAccount}}</span></td>
+              </tr>
+              <tr>
+                <td>销方编号：<span>{{main.sellerNoAr}}</span></td>
+                <td>扩展字段:<span></span></td>
+                <td><span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sellterInfos">
+        <div class="info-border">
+          <div class="sellterTitle">
+                            <span>
+                                <img src="assets/images/details/informationNoteCircle.png"/>
+                            </span>
+            <span class="title-font">购方信息</span>
+          </div>
+          <div class="sellterDetails">
+            <table>
+              <tbody>
+              <tr>
+                <td>购方名称：<span>{{main.purchaserName}}</span></td>
+                <td>购方地址：<span>{{main.purchaserAddress}}</span></td>
+                <td>购方银行名称：<span>{{main.purchaserBankName}}</span></td>
+              </tr>
+              <tr>
+                <td>购方税号：<span>{{main.purchaserTaxNo}}</span></td>
+                <td>购方电话：<span>{{main.purchaserTel}}</span></td>
+                <td>购方银行账号：<span>{{main.purchaserBankAccount}}</span></td>
+              </tr>
+              <tr>
+                <td>购方编号：<span>{{main.purchaserNoAr}}</span></td>
+                <td>扩展字段:<span></span></td>
+                <td><span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sellterInfos">
+        <div class="rule-info-border">
+          <div class="sellterTitle">
+                            <span>
+                                <img src="assets/images/details/informationNoteCircle.png"/>
+                            </span>
+            <span class="title-font">拆票规则</span>
+          </div>
+          <div class="sellterDetails">
+            <table>
+              <tbody>
+              <tr>
+                <td>按税率拆分:
+                  <span>
+                                                {{if ruleInfo.splitOption9 == '0'}}
+                                                    不拆分
+                                                {{else if ruleInfo.splitOption9 == '1'}}
+                                                    拆分
+                                                {{/if}}
+                                            </span>
+                </td>
+                <td>票面限制金额：<span>{{main.perinvoiceAmountLimit|moneyFormat}}</span></td>
+                <td>发票明细生成：
+                  <span>
+                                                {{if ruleInfo.invoiceItemMode == '0'}}
+                                                    按发票明细生成
+                                                {{else if ruleInfo.invoiceItemMode == '1'}}
+                                                    打印金税销货清单
+                                                {{/if}}
+                                            </span>
+                </td>
+              </tr>
+              <tr>
+                <td>开票折扣项：
+                  <span>
+                                                {{if ruleInfo.discountMode == '0'}}
+                                                    折扣不显示（归到价内）
+                                                {{else if ruleInfo.discountMode == '1'}}
+                                                    折扣逐行显示
+                                                {{/if}}
+                                            </span>
+                </td>
+                <td>开票选项：
+                  <span>
+                                                {{if ruleInfo.invoiceMakeMode == '0'}}
+                                                    顺序优先
+                                                {{else if ruleInfo.invoiceMakeMode == '1'}}
+                                                    张数优先
+                                                {{else if ruleInfo.invoiceMakeMode == '2'}}
+                                                    按货物及服务代码优先原则开票
+                                                {{/if}}
+                                            </span>
+                </td>
+                <td>打印内容标志：
+                  <span>
+                                                {{if ruleInfo.printContent == '0'}}
+                                                    打印单价和数量
+                                                {{else if ruleInfo.printContent == '1'}}
+                                                    不打印单价和数量
+                                                {{/if}}
+                                            </span>
+                </td>
+              </tr>
+              <tr>
+                <td>货物及服务代码选项：
+                  <span>
+                                                {{if ruleInfo.invoiceMakeByGoods == '0'}}
+                                                    不拆分
+                                                {{else if ruleInfo.invoiceMakeByGoods == '1'}}
+                                                    拆分
+                                                {{/if}}
+                                            </span>
+                </td>
+                <td>备注： <span></span></td>
+                <td><span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sellterInfos">
+      <div class="info-border">
+        <div class="sellterTitle">
+                        <span>
+                            <img src="assets/images/details/informationNoteCircle.png"/>
+                        </span>
+          <span class="title-font">明细<span>{{main.detailsCount}}</span>条</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="seller-table">
+      <table style="max-width: 350%;">
+        <thead class="table-title">
+        <tr>
+          <td class="d1">货物及服务名称</td>
+          <td class="d2">结算数量</td>
+          <td class="d3">规格型号</td>
+          <td class="d4">数量单位</td>
+          <td class="d5">不含税金额</td>
+          <td class="d6">税率</td>
+          <td class="d7">税额</td>
+          <td class="d8">业务结算单明细号</td>
+          <td class="d9">会计期间</td>
+          <td class="d10">结算方式</td>
+          <td class="d11">运输方式</td>
+          <td class="d12">订单号</td>
+          <td class="d13">订单行号</td>
+          <td class="d14">合同号</td>
+          <td class="d15">合同行号</td>
+          <td class="d16">项目大类</td>
+          <td class="d17">项目中类</td>
+          <td class="d18">项目细类</td>
+          <td class="d19">货物及服务代码</td>
+          <td class="d20">价格方式</td>
+          <td class="d21">单价</td>
+          <td class="d22">含税金额</td>
+          <td class="d23">不含税折扣金额</td>
+          <td class="d24">折扣税额</td>
+          <td class="d25">含税折扣金额</td>
+          <td class="d26">编码版本号</td>
+          <td class="d27">税收分类编码</td>
+          <td class="d28">是否享受税收优惠政策</td>
+          <td class="d29">享受税收优惠政策内容</td>
+          <td class="d30">零税率标志</td>
+          <td class="d31">扣除额</td>
+          <td class="d32">其他特殊说明</td>
+        </tr>
+        </thead>
+        <tbody id="sdetail-panel">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="tpl-sdetail-tr">
+  {{each details item i}}
+  <tr class="mainbody">
+    <td class="d1">{{item.itemName}}</td>
+    <td class="d2">{{item.quantity|intFormat}}</td>
+    <td class="d3">{{item.itemSpec}}</td>
+    <td class="d4">{{item.quantityUnit}}</td>
+    <td class="d5">{{item.amountWithoutTax|moneyFormat}}</td>
+    <td class="d6">{{item.taxRate|intFormat}}%</td>
+    <td class="d7">{{item.taxAmount|moneyFormat}}</td>
+    <td class="d8">业务结算单明细号</td>
+    <td class="d9">{{item.acctPeriod}}</td>
+    <td class="d10">{{item.settlementMethod}}</td>
+    <td class="d11">{{item.transportMethod}}</td>
+    <td class="d12">{{item.orderNo}}</td>
+    <td class="d13">{{item.orderDetailNo}}</td>
+    <td class="d14">{{item.contractNo}}</td>
+    <td class="d15">{{item.orderDetailNo}}</td>
+    <td class="d16">{{item.commFmlyDesc}}</td>
+    <td class="d17">{{item.commDesc}}</td>
+    <td class="d18">{{item.categoryDesc}}</td>
+    <td class="d19">{{item.itemCode}}</td>
+    <td class="d20">{{item.priceMethod == "0"? "不含税价": "含税价"}}</td>
+    <td class="d21">{{item.unitPrice|moneyFormat}}</td>
+    <td class="d22">{{item.amountWithTax|moneyFormat}}</td>
+    <td class="d23">{{item.discountWithoutTax|moneyFormat}}</td>
+    <td class="d24">{{item.discountTax|moneyFormat}}</td>
+    <td class="d25">{{item.discountWithTax|moneyFormat}}</td>
+    <td class="d26">{{item.goodsNoVer}}</td>
+    <td class="d27">{{item.goodsTaxNo}}</td>
+    <td class="d28">{{(item.taxPre!= '') && (item.taxPre == "1")? "享受": "不享受"}}</td>
+    <td class="d29">{{item.taxPreCon}}</td>
+    <td class="d30">{{item.zeroTax}}</td>
+    <td class="d31">{{item.taxDedunction|moneyFormat}}</td>
+    <td class="d32">{{item.remark}}</td>
+  </tr>
+  {{/each}}
+</script>
+
+<script type="text/html" id="tpl_dialog_printList">
+  <div class="dialog_printList">
+    <img src="assets/images/print_invoice_detail_list.png" alt=""></br>
+    <span class="title">是否确认打印销货清单？</span></br>
+    <span class="detailNumber">销货清单明细<span>{{main.detailsCount}}</span>条</span>
+    </br>
+    <div>
+      <button class="printDetailList_invoice blueBGWhiteContentBtn operateBtn" invoiceOrigin="5" invoiceType="c,s" catalog="1"
+              tabs="invoiceBasic" auth="x0201091" onclick="page.action_printDetailList_invoice('{{main.invoiceId}}')">直连打印</button>
+      <button class="printDetailListPDF_invoice blueBGWhiteContentBtn operateBtn" invoiceOrigin="5" invoiceType="c,s" catalog="1"
+              tabs="invoiceBasic" auth="x0201092" onclick="page.action_printDetailListPDF_invoice('{{main.invoiceId}}')">导出PDF</button>
+    </div>
+  </div>
+</script>
+
+</html>

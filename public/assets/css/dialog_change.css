@@ -1,0 +1,251 @@
+
+.dialogchange{
+  margin-top:18px;
+}
+.contentBoxOut{
+    margin: 0 auto;
+    /*width: 1000px;*/
+    height: 600px;
+    /*margin-top: 50px;*/
+}
+
+.p1 {
+    color: #5a5b5d;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 43px;
+    margin-bottom: 30px;
+  }
+
+ #modifyDialog .modal-body {
+    padding-top: 0px;
+    /*width: 100%;*/
+    height: 450px;
+    overflow-y: scroll;
+    padding-left: 45px;
+  }
+
+  #modifyDialog .modal-body > div {
+    margin-bottom: 30px;
+  }
+
+  .p2left {
+    vertical-align: top;
+    
+  }
+
+  .div-width {
+    width: 130px;
+  }
+
+  .inlineblock {
+    display: inline-block;
+  }
+
+  .titlefontstyle{
+    font-size: 12px;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+
+  .invoiceTypeSelect {
+      width: 250px;
+      height: 30px;
+    }
+
+    .fontgray{
+        font-size: 12px;
+        color: #9b9b9b;
+      }
+
+  .limitmoney {
+    margin-left: 171px;
+    position: relative;
+  }
+
+  .ipt1 {
+    width: 250px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #bfbfbf;
+    padding-left: 10px;
+  }
+
+ .p3 {
+    padding-bottom: 12px;
+  }
+  .p6{
+    margin-top:12px;
+    margin-bottom:8px;
+  }
+  .textarea-title{
+    color: #9b9b9b;
+    position: absolute;
+    background: #fff;
+    z-index: 10;
+    display: block;
+    height: 22px;
+    width: 80%;
+    left: 136px;
+    top: 3px;
+    text-indent: 8px;
+  }
+  .ruleSelect {
+      height: 30px;
+      width: 250px;
+    }
+
+
+  .p2 > div > span, .p3 > div, .p4 > div, .p6 > div, .p7 > div {
+    display: inline-block;
+  }
+
+  .p2 > div > div, .p2 > div > span, .p3 > div > span, .p4 > div > span, .p6 > div > span, .p7 > div > span {
+    color: #4a4a4a;
+    font-weight: bold;
+  }
+
+  .p2 .redcomment {
+    margin-left: 65px;
+    color: red;
+    font-weight:normal;
+    display: none;
+    position: absolute;
+    top: -20px;
+  }
+
+  .p3 > div, .p6 > div {
+    float: left;
+    margin-right: 7px;
+  }
+
+  .p4 {
+    
+  }
+
+  .ruleSelect {
+      height: 30px;
+      width: 250px;
+    }
+
+  /*.move {
+    margin-top: -18px;
+  }*/
+
+  .textareapadding{
+    padding-top: 20px;
+  }
+
+  textarea{
+    width: 80%;
+    margin-left: 134px;
+    margin-top: -18px;
+  }
+
+  .p5 {
+    font-size: 12px;
+  }
+
+  .comments {
+    margin-left: 15px;
+  }
+
+  .commentss {
+    text-align: left;
+    margin-left: 125px;
+    height: 20px;
+  }
+
+  .commentss > span > label {
+    font-size: 12px;
+    color: #9b9b9b;
+    font-weight: normal;
+  }
+
+  .p5 {
+    font-size: 12px;
+  }
+
+  .p5 {
+    margin-left: 125px;
+  }
+
+  .p5 > span {
+    display: inline-block;
+    width: 33%;
+    line-height: 30px;
+    color: #4a4a4a;
+  }
+
+  .switchbtn {
+    border: none;
+    
+  }
+
+  .switchbtn>span {
+      font-size: 12px;
+      font-weight: 500;
+      color: #bfbfbf;
+    }
+
+.yes-switch-no {
+    width: 80px;
+    height: 30px;
+    border: none;
+    background: #fff;
+    padding: 0px;
+  }
+
+  .yes-switch-no > img {
+    display: inline-block;
+    margin-left: 0px;
+  }
+
+  .font12{
+    font-size:12px;
+  }
+
+.upgradeleft, .upgraderight {
+width: 50%;
+float: left;
+}
+
+.upgrade {
+  margin-left: 132px;
+  margin-top:12px;
+}
+
+.upgradeleft1, .upgraderight1 {
+float: left;
+height: 140px;
+/*border: 1px solid red;*/
+margin-right: 10px;
+}
+
+.upgradeleft2 > span, .upgraderight2 > span {
+display: block;
+color: #9b9b9b;
+}
+
+.modalfooter {
+text-align: right;
+padding-right: 50;
+padding-bottom: 50;
+}
+
+.apli-filter-btn {
+text-align: center;
+color: #ffffff;
+width: 98px;
+height: 28px;
+margin-bottom: 10px;
+border-radius: 2px;
+background-color: #41b4ec;
+border: solid 2px #41b4ec;
+line-height: 28px;
+cursor: pointer;
+float: right;
+margin-right: 25px;
+}

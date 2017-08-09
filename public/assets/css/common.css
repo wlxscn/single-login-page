@@ -1,0 +1,313 @@
+.unselect{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently*/
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    border-top: 4px solid #41b4ec;
+    color: #5a5b5d;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+    color: #41b4ec;
+    background-color: #fff;
+}
+
+
+/*tab 样式*/
+
+.nav-pills>li>a {
+    color: #5a5b5d;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 20px;
+    height: 22px;
+    line-height: 22px;
+}
+
+.nav-pills>li.focus>a {
+    color: #08c;
+}
+
+#tabbar {
+    height: 46px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs {
+    height: 39px;
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.nav-tabs>li {
+    height: 39px;
+    box-sizing: border-box;
+}
+
+.nav-tabs>li>a {
+    border-radius: 0;
+    /*padding: 7px 20px;*/
+    width: 140px;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #bfbfbf;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    height: 39px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.nav-pills {
+    height: 39px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+
+.nav-pills>li {
+    height: 39px;
+    box-sizing: border-box;
+}
+
+.nav-pills>li>a {
+    color: #5a5b5d;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 20px;
+    height: 39px;
+    box-sizing: border-box;
+}
+
+
+/*蓝底白字button*/
+
+.blueBGWhiteContentBtn {
+    color: #ffffff;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    background-color: #41b4ec;
+    border: solid 1px #41b4ec;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*白底蓝字button*/
+
+.whiteBGBlueContentBtn {
+    color: #41b4ec;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #41b4ec;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*白底橙色字button*/
+
+.whiteBGOrangeContentBtn {
+    color: #eca241;
+    width: 100px;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 2px;
+    border: solid 1px #eca241;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*灰底白色字button*/
+
+.grayBGWhiteContentBtn {
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    border: solid 1px #bbb;
+    background-color: #bbb;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*input按钮*/
+
+
+/*蓝底白字button*/
+
+input.blueBGWhiteContentBtn {
+    color: #ffffff;
+    width: 100px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 2px;
+    background-color: #41b4ec;
+    border: solid 1px #41b4ec;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*白底蓝字button*/
+
+input.whiteBGBlueContentBtn {
+    color: #41b4ec;
+    width: 100px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #41b4ec;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*白底橙色字button*/
+
+input.whiteBGOrangeContentBtn {
+    color: #eca241;
+    width: 100px;
+    line-height: 20px;
+    height: 30px;
+    border-radius: 2px;
+    border: solid 1px #eca241;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*灰底白色字button*/
+
+input.grayBGWhiteContentBtn {
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 2px;
+    border: solid 1px #bbb;
+    background-color: #bbb;
+    text-align: center;
+    font-size: 14px;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+/* message提示框样式 */
+.message {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 36px;
+    line-height: 36px;
+    min-width: 220px;
+    box-shadow: 0px 2px 5px #ccc;
+    opacity: 0;
+    border: 1px solid #ccc;
+}
+
+.message .state {
+    float: left;
+    width: 52px;
+    height: 36px;
+    background-color: #6cdf6c;
+    text-align: center;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.message .state.warn {
+    background-color: #e2e75e;
+}
+
+.message .state.error {
+    background-color: #e56969;
+}
+
+.message .text {
+    float: left;
+    height: 36px;
+    width: auto;
+    padding: 0 12px;
+}
+
+/* dialog提示框样式 */
+.dialog {
+    opacity: 0;
+    display: block;
+}
+
+.dialog-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/dialog_bg.png');
+    background-color: rgba(0, 0, 0, 0.3);
+}   
+ 
+input::-ms-clear{display:none;}
+
+
+/* 底部的样式 */
+.bottomBar {
+    display: none; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background-color: rgb(90, 91, 93);
+    background-color: rgba(90, 91, 93, 0.75);
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding-left: 18px;
+}
+.bottomBar .checkbox{
+    display: inline-block;
+}
+.bottomBar input {
+    vertical-align: baseline;
+}
+
+.bottomBar img {
+    float: right;
+    width: 12px;
+    margin-top: 18px;
+    margin-right: 32px; 
+}
+.bottomBar .btn{
+    margin-left:22px;
+    margin-right:0;
+    vertical-align: inherit;
+}
